@@ -108,4 +108,14 @@ public class OrderService {
 		return booleanValue;
 	}
 
+	/**
+	 * Method to get Order by zone user
+	 * 
+	 * @param zone
+	 * @return orders by zone user
+	 */
+	public List<Order> getOrdersByZone(String zone) {
+		return repositoryOrder.getOrdersByZone(zone);
+	}
+
 }

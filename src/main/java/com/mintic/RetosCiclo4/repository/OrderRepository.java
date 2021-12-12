@@ -77,4 +77,14 @@ public class OrderRepository {
 		return interfOderRepo.findTopByOrderByIdDesc();
 	}
 
+	/**
+	 * Method to get orders by Key salesMan.zone Collection "orders"
+	 * 
+	 * @param zone
+	 * @return orders by salesman.zone key
+	 */
+	public List<Order> getOrdersByZone(String zone) {
+		return (List<Order>) interfOderRepo.findByZone(zone);
+	}
+
 }
