@@ -1,6 +1,7 @@
 package com.mintic.RetosCiclo4.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ import com.mintic.RetosCiclo4.model.User;
 import com.mintic.RetosCiclo4.service.UserService;
 
 /**
- * Class to Access Enpoints
+ * Class to Access Endpoints
  * 
  * @author MARIO
  *
@@ -41,6 +42,17 @@ public class UserController {
 	@GetMapping("/all")
 	public List<User> getAllUsers() {
 		return serviceUser.getAllUsers();
+	}
+
+	/**
+	 * Method Endpoint to get unique user
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/{id}")
+	public Optional<User> getUser(@PathVariable("id") int id) {
+		return serviceUser.getUsr(id);
 	}
 
 	/**

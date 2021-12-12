@@ -16,5 +16,8 @@ public interface UserInterface extends MongoRepository<User, Integer> {
 
 	Optional<User> findByEmail(String email);
 	Optional<User> findByEmailAndPassword(String email, String password);
+	
+	// To get  max id of User 
+	Optional<User> findTopByOrderByIdDesc();
 
 }

@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Class Model MongoDB Collection Vegetarians
+ * Class Model MongoDB Collection "Vegetarians"
  * 
  * @author G5 Desarrollo Web
  *

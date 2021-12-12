@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.mintic.RetosCiclo4.model.User;
 
-
-
 /**
  * Repository to ACCES Model User
  * 
@@ -20,6 +18,7 @@ import com.mintic.RetosCiclo4.model.User;
 public class UserRepository {
 	@Autowired
 	private UserInterface interfUserRepo;
+
 	/**
 	 * Method to Get All products
 	 * 
@@ -37,9 +36,10 @@ public class UserRepository {
 	public Optional<User> getUser(int id) {
 		return interfUserRepo.findById(id);
 	}
-	
+
 	/**
 	 * Method to Create New User
+	 * 
 	 * @return Product Saved
 	 */
 	public User createUser(User user) {
@@ -62,6 +62,7 @@ public class UserRepository {
 
 	/**
 	 * Method to verify if email Exist
+	 * 
 	 * @param email
 	 * @return True if email exist
 	 */
@@ -72,6 +73,7 @@ public class UserRepository {
 
 	/**
 	 * Method to verify if email and password exists
+	 * 
 	 * @param email
 	 * @param password
 	 * @return User
@@ -80,6 +82,12 @@ public class UserRepository {
 		return interfUserRepo.findByEmailAndPassword(email, password);
 	}
 
+	/**
+	 * get last user Id from collection "usuarios" @ return User id
+	 */
+	public Optional<User> lastUserId() {
+		return interfUserRepo.findTopByOrderByIdDesc();
 
+	}
 
 }
