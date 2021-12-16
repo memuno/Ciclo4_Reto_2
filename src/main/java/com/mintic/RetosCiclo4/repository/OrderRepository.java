@@ -1,11 +1,15 @@
 package com.mintic.RetosCiclo4.repository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.mintic.RetosCiclo4.model.Order;
@@ -21,6 +25,9 @@ public class OrderRepository {
 
 	@Autowired
 	private OrderInterface interfOderRepo;
+
+	@Autowired
+	private MongoTemplate mongoTemplate;
 
 	/**
 	 * Method to get All orders items Return list orders
@@ -118,9 +125,27 @@ public class OrderRepository {
 	 * @param id
 	 * @return List Orders
 	 */
-	public List<Order> getOrderByregisterDayBySalesManId(String date, Integer id) {
-		LocalDateTime newDate = LocalDate.parse(date).atStartOfDay();
-		return (List<Order>) interfOderRepo.findBySalesManID(newDate, id);
+
+	public List<Order> ordersSalesManByDate(String dateStr, Integer id) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		Query query = new Query();
+
+		Criteria dateCriteria = Criteria.where("registerDay")
+				.gte(LocalDate.parse(dateStr, dtf).minusDays(1).atStartOfDay())
+				.lt(LocalDate.parse(dateStr, dtf).plusDays(1).atStartOfDay()).and("salesMan.id").is(id);
+
+		query.addCriteria(dateCriteria);
+
+		List<Order> orders = mongoTemplate.find(query, Order.class);
+
+		return orders;
+
 	}
+
+	/**
+	 * public List<Order> getOrderByregisterDayBySalesManId(String date, Integer id)
+	 * { LocalDateTime newDate = LocalDate.parse(date).atStartOfDay(); return
+	 * (List<Order>) interfOderRepo.findBySalesManID(newDate, id); }
+	 */
 
 }

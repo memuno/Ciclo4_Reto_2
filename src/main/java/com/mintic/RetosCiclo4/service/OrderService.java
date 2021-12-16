@@ -1,6 +1,5 @@
 package com.mintic.RetosCiclo4.service;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -147,8 +146,9 @@ public class OrderService {
 	 * @param id
 	 * @return List Orders
 	 */
-	public List<Order> getOrderByregisterDayBySalesManId(String date, Integer id) {
-		return repositoryOrder.getOrderByregisterDayBySalesManId(date, id);
+
+	public List<Order> ordersSalesManByDate(String dateStr, Integer id) {
+		return repositoryOrder.ordersSalesManByDate(dateStr, id);
 	}
 
 }
