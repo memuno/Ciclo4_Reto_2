@@ -1,9 +1,12 @@
 package com.mintic.RetosCiclo4.controller;
 
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -102,4 +105,41 @@ public class OrderController {
 		return serviceOrder.getOrdersByZone(zone);
 	}
 
+	/**
+	 * Method Endpoint: /api/order/salesman/{id}
+	 * 
+	 * @param id
+	 * @return Orders by salesMan´s Id
+	 */
+	@GetMapping("/salesman/{id}")
+	public List<Order> getOrderBySalesManId(@PathVariable("id") Integer id) {
+		return serviceOrder.getOrderBySalesManId(id);
+	}
+
+	/**
+	 * Method Endpoint: api/order/state/{state}/{id}
+	 * 
+	 * @param status
+	 * @param id
+	 * @return List Orders
+	 */
+	@GetMapping("/state/{status}/{id}")
+	public List<Order> getOrderByStateBySalesManId(@PathVariable("status") String status, @PathVariable("id") Integer id) {
+		return serviceOrder.getOrderByStateBySalesManId(status, id);
+	}
+
+	/**
+	 * Method Endpoint: api/order/date/{date}/{id}
+	 * 
+	 * @param date
+	 * @param id
+	 * @return List Order
+	 */
+	@GetMapping("/date/{date}/{id}")
+	public List<Order> getOrderByRegisterDayBySalesManId(@PathVariable("date")  String date, @PathVariable("id") Integer id) {
+
+		return serviceOrder.getOrderByregisterDayBySalesManId(date, id);
+	}
+
+	// @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 }

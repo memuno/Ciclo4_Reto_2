@@ -1,5 +1,7 @@
 package com.mintic.RetosCiclo4.repository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,6 +87,40 @@ public class OrderRepository {
 	 */
 	public List<Order> getOrdersByZone(String zone) {
 		return (List<Order>) interfOderRepo.findByZone(zone);
+	}
+
+	/**
+	 * Method to get Orders by salesMan´s id
+	 * 
+	 * @param id
+	 * @return list Orders
+	 */
+	public List<Order> getOrderBySalesManId(Integer id) {
+		return (List<Order>) interfOderRepo.findBySalesManById(id);
+
+	}
+
+	/**
+	 * Method to get Orders by status and salesMan´s id
+	 * 
+	 * @param status
+	 * @param id
+	 * @return List Orders
+	 */
+	public List<Order> getOrderByStateBySalesManId(String status, Integer id) {
+		return (List<Order>) interfOderRepo.findByStatusbySalesMan(status, id);
+	}
+
+	/**
+	 * Method to get Orders by registerDay and salesMan´s id
+	 * 
+	 * @param registerDay
+	 * @param id
+	 * @return List Orders
+	 */
+	public List<Order> getOrderByregisterDayBySalesManId(String date, Integer id) {
+		LocalDateTime newDate = LocalDate.parse(date).atStartOfDay();
+		return (List<Order>) interfOderRepo.findBySalesManID(newDate, id);
 	}
 
 }

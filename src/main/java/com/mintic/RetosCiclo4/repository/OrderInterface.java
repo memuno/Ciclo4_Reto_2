@@ -1,5 +1,7 @@
 package com.mintic.RetosCiclo4.repository;
 
+import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -25,5 +27,19 @@ public interface OrderInterface extends MongoRepository<Order, Integer> {
 
 	// Query to Collection " orders" to get max id
 	Optional<Order> findTopByOrderByIdDesc();
+
+	// Reto4 -- Query--EP: /api/order/salesman/{id}--
+	@Query("{'salesMan.id': ?0}")
+	List<Order> findBySalesManById(Integer id);
+
+	// Reto4 -- Query--EP: /api/order/state/{Pendiente}/{id}
+	@Query("{ 'status': ?0, 'salesMan.id': ?1 }")
+	List<Order> findByStatusbySalesMan(String status, Integer id);
+
+	// Reto4 -- Query--EP: /api/order/date/{date}/{id}
+	@Query("{'registerDay': ?0, 'salesMan.id': ?1}")
+	List<Order> findBySalesManID(LocalDateTime date, Integer id);
+
+	// { $regex:'?0'}--for Query
 
 }
