@@ -150,4 +150,13 @@ public class UserService {
 		}
 	}
 
+	/**
+	 * Method to Get Users by monthBrithtDay parameter : RETO 5
+	 * 
+	 * @param monthBirthtDay
+	 * @return
+	 */
+	public List<User> birthtDayList(String monthBirthtDay) {
+		return repositoryUser.birthtDayList(monthBirthtDay);
+	}
 }

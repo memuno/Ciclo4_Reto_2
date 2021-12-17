@@ -91,4 +91,25 @@ public class VegetarianController {
 		return ServiceVegetarian.deleteVegProduct(reference);
 	}
 
+	/**
+	 * Method Endpoint: /api/vegetarian/price/{price} RETO 5
+	 * 
+	 * @param precio
+	 * @return
+	 */
+	@GetMapping("/price/{price}")
+	public List<Vegetarian> productByPrice(@PathVariable("price") double precio) {
+		return ServiceVegetarian.productByPrice(precio);
+	}
+
+	/**
+	 * Method Endpoint: /api/vegetarian/description/{Description} RETO 5
+	 * 
+	 * @param description
+	 * @return
+	 */
+	@GetMapping("/description/{description}")
+	public List<Vegetarian> findByDescriptionLike(@PathVariable("description") String description) {
+		return ServiceVegetarian.findByDescriptionLike(description);
+	}
 }

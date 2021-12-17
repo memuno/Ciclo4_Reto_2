@@ -90,4 +90,14 @@ public class UserRepository {
 
 	}
 
+	/**
+	 * Method to Get Users by monthBirthtDay : RETO 5
+	 * 
+	 * @param monthBirthtDay
+	 * @return List of Users
+	 */
+	public List<User> birthtDayList(String monthBirthtDay) {
+		return interfUserRepo.findByMonthBirthtDay(monthBirthtDay);
+	}
+
 }

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.mintic.RetosCiclo4.model.Vegetarian;
@@ -13,7 +12,7 @@ import com.mintic.RetosCiclo4.repository.VegetarianRepository;
 /**
  * Class to Access Repository Vegetarian
  * 
- * @author MARIO
+ * @author MARIO GOMEZ
  *
  */
 
@@ -23,8 +22,6 @@ public class VegetarianService {
 	@Autowired
 	private VegetarianRepository vegetarianRepository;
 
-	@Autowired
-	private MongoTemplate mongoTemplate;
 
 	/**
 	 * 
@@ -111,6 +108,26 @@ public class VegetarianService {
 			return true;
 		}).orElse(false);
 		return vegetBoolean;
+	}
+
+	/**
+	 * Method to get products by price less or equal than price parameter RETO 5
+	 * 
+	 * @param price
+	 * @return List products
+	 */
+	public List<Vegetarian> productByPrice(double price) {
+		return vegetarianRepository.productByPrice(price);
+	}
+
+	/**
+	 * Method to get products by description parameter RETO 5
+	 * 
+	 * @param description
+	 * @return List products
+	 */
+	public List<Vegetarian> findByDescriptionLike(String description) {
+		return vegetarianRepository.findByDescriptionLike(description);
 	}
 
 }

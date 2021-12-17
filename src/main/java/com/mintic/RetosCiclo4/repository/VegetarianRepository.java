@@ -64,4 +64,24 @@ public class VegetarianRepository {
 		InterfVegetarianRepo.delete(product);
 	}
 
+	/**
+	 * Method to Get Products by price Less or equal to parameter : RETO 5
+	 * 
+	 * @param precio
+	 * @return List Products
+	 */
+	public List<Vegetarian> productByPrice(double precio) {
+		return InterfVegetarianRepo.findByPriceLessThanEqual(precio);
+	}
+
+	/**
+	 * Method to Get Products by Description parameter RETO: 5
+	 * 
+	 * @param description
+	 * @return List Products
+	 */
+	public List<Vegetarian> findByDescriptionLike(String description) {
+		return InterfVegetarianRepo.findByDescriptionLike(description);
+	}
+
 }

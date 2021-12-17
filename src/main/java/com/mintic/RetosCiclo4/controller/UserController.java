@@ -113,4 +113,15 @@ public class UserController {
 	public boolean emailExists(@PathVariable("email") String email) {
 		return serviceUser.emailExists(email);
 	}
+
+	/**
+	 * Method Enpoint: /api/user/birthday/05 RETO 5
+	 * 
+	 * @param monthBirthtDay
+	 * @return List users
+	 */
+	@GetMapping("/birthday/{month}")
+	public List<User> birthtDayList(@PathVariable("month") String monthBirthtDay) {
+		return serviceUser.birthtDayList(monthBirthtDay);
+	}
 }
