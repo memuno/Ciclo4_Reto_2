@@ -12,7 +12,7 @@ import com.mintic.RetosCiclo4.repository.OrderRepository;
 /**
  * Class to acces Repository User
  * 
- * @author G5 Desarrollo WEB
+ * @author G5 Desarrollo WEB Ciclo4
  *
  */
 
